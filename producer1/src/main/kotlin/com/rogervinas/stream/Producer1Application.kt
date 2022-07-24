@@ -19,6 +19,7 @@ class Application {
 
   private val version = "v1"
   private val unbounded: BlockingQueue<Sensor> = LinkedBlockingQueue()
+  private val random = Random(System.nanoTime())
 
   @Bean
   fun supplier() = Supplier { unbounded.poll() }
@@ -31,9 +32,9 @@ class Application {
 
   private fun randomSensor() = Sensor().apply {
     this.id = randomUUID().toString() + "-$version"
-    this.acceleration = Random.nextFloat() * 10
-    this.velocity = Random.nextFloat() * 100
-    this.temperature = Random.nextFloat() * 50
+    this.acceleration = random.nextFloat() * 10
+    this.velocity = random.nextFloat() * 100
+    this.temperature = random.nextFloat() * 50
   }
 }
 
