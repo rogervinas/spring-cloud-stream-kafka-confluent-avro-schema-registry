@@ -5,15 +5,14 @@ spring:
   cloud:
     stream:
       bindings:
-        process-in-0:
+        supplier-out-0:
           destination: sensor-topic
-          consumer:
-            useNativeDecoding: true
+          producer:
+            useNativeEncoding: true
       kafka:
         bindings:
-          process-in-0:
-            consumer:
+          supplier-out-0:
+            producer:
               configuration:
-                value.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+                value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
                 schema.registry.url: http://localhost:8081
-                specific.avro.reader: true
