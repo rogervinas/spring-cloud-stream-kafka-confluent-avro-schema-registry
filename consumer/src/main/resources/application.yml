@@ -10,6 +10,8 @@ spring:
           consumer:
             useNativeDecoding: true
       kafka:
+        binder:
+          brokers: localhost:9092
         bindings:
           process-in-0:
             consumer:

@@ -38,9 +38,6 @@ kcat -b localhost:9092 -t sensor-topic -s avro -r http://localhost:8081
 ## Links
 
 * [Confluent All-in-One Docker Compose](https://github.com/confluentinc/cp-all-in-one/blob/7.2.1-post/cp-all-in-one/docker-compose.yml)
+* [Confluent Docker Configuration Parameters](https://docs.confluent.io/platform/current/installation/docker/config-reference.html)
 * [Spring Initialzr](https://start.spring.io/#!type=gradle-project&language=kotlin&platformVersion=2.7.2&packaging=jar&jvmVersion=11&groupId=com.rogervinas.springcloudstream.kafka&artifactId=consumer&name=consumer&description=Spring%20Cloud%20Stream%20Kafka%20Consumer&packageName=com.rogervinas.springcloudstream.kafka.consumer&dependencies=cloud-stream)
 * [Spring Cloud Schema Registry](https://docs.spring.io/spring-cloud-schema-registry/docs/current/reference/html/spring-cloud-schema-registry.html)
-
-
-
-
