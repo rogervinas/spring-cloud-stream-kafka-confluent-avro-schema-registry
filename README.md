@@ -7,13 +7,13 @@ Spring Cloud Stream uses Json serializers by default, but maybe you want to cons
 - It uses a more compact binary form.
 - You can define a schema and compatibility rules between schema versions.
 
-In this demo, based on the [schema-registry-confluent-avro-serializer sample](https://github.com/spring-cloud/spring-cloud-stream-samples/tree/main/schema-registry-samples/schema-registry-confluent-avro-serializer), we will create three Spring Cloud Stream applications, one consumer and two producers, all of them using the Confluent Schema Registry Server and the Confluent Avro Serializers.
+In this demo, based on the [schema-registry-confluent-avro-serializer sample](https://github.com/spring-cloud/spring-cloud-stream-samples/tree/main/schema-registry-samples/schema-registry-confluent-avro-serializer), we will create three Spring Cloud Stream applications, one consumer and two producers, all of them using the [Confluent Schema Registry Server](https://docs.confluent.io/platform/current/schema-registry/index.html) and the [Confluent Avro Serializers](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html).
 
 ![Diagram](doc/diagram.png)
 
-As you can see in the diagram, the consumer should be able to consume both "Sensor" v1 and v2 messages.
+As you can see in the diagram, the consumer should be able to consume both Sensor v1 and v2 messages.
 
-Ready? Let's do it!
+Ready? Let's do it! 🚀
 
 * [Creating the project](#creating-the-project)
 * [Implementing the Producer v1](#implementing-the-producer-v1)
@@ -39,9 +39,11 @@ We will use a [docker-compose.yml](docker-compose.yml) based on the one from [co
 
 Confluent **control-center** is not really needed, but it may be interesting to take a look at its admin console at http://localhost:9021 when running the demo locally.
 
+We use [`SCHEMA_COMPATIBILITY_LEVEL = none`](docker-compose.yml#L52) but you can play with the other ones as documented in [Confluent Schema Evolution and Compatibility](https://docs.confluent.io/platform/current/schema-registry/avro.html#schema-evolution-and-compatibility).
+
 ## Implementing the Producer v1
 
-This producer will send "Sensor" messages in v1 format as specified in [avro/sensor.avsc](producer1/src/main/avro/sensor.avsc):
+This producer will send Sensor messages in v1 format as specified in [producer1/avro/sensor.avsc](producer1/src/main/avro/sensor.avsc):
 ```json
 {
   "namespace" : "com.example",
@@ -91,7 +93,7 @@ spring:
                 schema.registry.url: http://localhost:8081
 ```
 
-So Spring Cloud Stream:
+Then Spring Cloud Stream:
 * Will expect us to implement a @Bean named `supplier` of type `java.util.function.Supplier` returning a value or a `reactor.core.publisher.Flux` of values.
 * Will call this @Bean one or many times to retrieve the values to be published.
 * Will connect to a kafka broker on `localhost:9092`.
@@ -185,7 +187,7 @@ class RandomTestConfiguration {
 
 ## Implementing the Producer v2
 
-This producer will send "Sensor" messages in v2 format as specified in [avro/sensor.avsc](producer2/src/main/avro/sensor.avsc):
+This producer will send Sensor messages in v2 format as specified in [producer2/avro/sensor.avsc](producer2/src/main/avro/sensor.avsc):
 ```json
 {
   "namespace" : "com.example",
@@ -221,7 +223,7 @@ Implementing and testing this producer is done the same as the v1 one.
 
 ## Implementing the Consumer
 
-For the consumer to be able to consume "Sensor" v1 and v2 messages we define the schema as:
+For the consumer to be able to consume Sensor v1 and v2 messages we define the schema in [consumer/avro/sensor.avsc](consumer/src/main/avro/sensor.avsc) as:
 ```json
 {
   "namespace" : "com.example",
@@ -373,7 +375,7 @@ fun `should consume sensor v2 message`() {
 }
 ```
 
-That's it! Happy coding!
+That's it! Happy coding! 💙
 
 ## Test this demo
 
@@ -391,6 +393,8 @@ docker compose up -d
 ./gradlew producer1:bootRun
 ./gradlew producer2:bootRun
 ```
+
+* Confluent control center at http://localhost:9021
 
 * Produce v1 payload:
 ```shell
