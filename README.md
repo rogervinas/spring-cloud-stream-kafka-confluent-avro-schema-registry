@@ -3,9 +3,9 @@
 # Spring Cloud Stream & Kafka Confluent Avro Schema Registry
 
 Spring Cloud Stream uses Json serializers by default, but maybe you want to consider [using Avro serializers](https://www.confluent.io/blog/avro-kafka-data):
-- It is faster to serialize/deserialize
-- It uses a more compact binary form
-- You can define a schema and compatibility rules between schema versions
+- It is faster to serialize/deserialize.
+- It uses a more compact binary form.
+- You can define a schema and compatibility rules between schema versions.
 
 In this demo, based on the [schema-registry-confluent-avro-serializer sample](https://github.com/spring-cloud/spring-cloud-stream-samples/tree/main/schema-registry-samples/schema-registry-confluent-avro-serializer), we will create three Spring Cloud Stream applications, one consumer and two producers, all of them using the Confluent Schema Registry Server and the Confluent Avro Serializers.
 
