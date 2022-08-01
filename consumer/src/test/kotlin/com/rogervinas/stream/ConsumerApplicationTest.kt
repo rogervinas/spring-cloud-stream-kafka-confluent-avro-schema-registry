@@ -54,7 +54,7 @@ class ConsumerApplicationTest {
     val velocity = 15.73f
 
     val recordV1 = createRecord(
-      schema="""
+      schema = """
       {
         "namespace" : "com.example",
         "type" : "record",
@@ -74,7 +74,7 @@ class ConsumerApplicationTest {
       put("velocity", velocity)
     }
 
-    sendRecord(id, recordV1)
+    produceRecord(id, recordV1)
 
     verify(process, timeout(TIMEOUT.toMillis()))
       .accept(Sensor(id, temperature, 0f, acceleration, velocity))
@@ -89,7 +89,7 @@ class ConsumerApplicationTest {
     val velocity = 15.73f
 
     val recordV2 = createRecord(
-      schema="""
+      schema = """
       {
         "namespace" : "com.example",
         "type" : "record",
@@ -113,7 +113,7 @@ class ConsumerApplicationTest {
       put("velocity", velocity)
     }
 
-    sendRecord(id, recordV2)
+    produceRecord(id, recordV2)
 
     verify(process, timeout(TIMEOUT.toMillis()))
       .accept(Sensor(id, internalTemperature, externalTemperature, acceleration, velocity))
@@ -124,14 +124,15 @@ class ConsumerApplicationTest {
     return GenericData.Record(parser.parse(schema))
   }
 
-  private fun sendRecord(key: String, record: GenericRecord) {
-    val props = Properties()
-    props[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = "localhost:$BROKER_PORT"
-    props[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
-    props[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = KafkaAvroSerializer::class.java
-    props["schema.registry.url"] = "http://localhost:$SCHEMA_REGISTRY_PORT"
+  private fun produceRecord(key: String, record: GenericRecord) {
+    val producerProperties = Properties().apply {
+      this[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = "localhost:$BROKER_PORT"
+      this[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
+      this[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = KafkaAvroSerializer::class.java
+      this["schema.registry.url"] = "http://localhost:$SCHEMA_REGISTRY_PORT"
+    }
 
-    KafkaProducer<String, GenericRecord>(props).use { producer ->
+    KafkaProducer<String, GenericRecord>(producerProperties).use { producer ->
       producer.send(ProducerRecord(SENSOR_TOPIC, key, record))
     }
   }
