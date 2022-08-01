@@ -111,6 +111,8 @@ class ConsumerApplicationTest {
       put("externalTemperature", externalTemperature)
       put("acceleration", acceleration)
       put("velocity", velocity)
+      put("accelerometer", listOf(1.1f, 2.2f, 3.3f))
+      put("magneticField", listOf(4.4f, 5.5f, 6.6f))
     }
 
     produceRecord(id, recordV2)
