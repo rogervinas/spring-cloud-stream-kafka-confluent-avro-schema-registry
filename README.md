@@ -1,6 +1,6 @@
 [![CI](https://github.com/rogervinas/spring-cloud-stream-kafka-avro-schema-registry/actions/workflows/gradle.yml/badge.svg)](https://github.com/rogervinas/spring-cloud-stream-kafka-avro-schema-registry/actions/workflows/gradle.yml)
 
-# Spring Cloud Stream & Kafka Schema Registry
+# Spring Cloud Stream & Kafka Avro Schema Registry
 
 Demo using Spring Cloud Stream & Confluent Schema Registry & Confluent Avro Serializers based on [this sample](https://github.com/spring-cloud/spring-cloud-stream-samples/tree/main/schema-registry-samples/schema-registry-confluent-avro-serializer).
 
