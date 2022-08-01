@@ -1,6 +1,6 @@
 [![CI](https://github.com/rogervinas/spring-cloud-stream-kafka-avro-schema-registry/actions/workflows/gradle.yml/badge.svg)](https://github.com/rogervinas/spring-cloud-stream-kafka-avro-schema-registry/actions/workflows/gradle.yml)
 
-# Spring Cloud Stream & Kafka Confluent Avro Schema Registry
+# Spring Cloud Stream Kafka & Confluent Avro Schema Registry
 
 Spring Cloud Stream uses Json serializers by default, but maybe you want to consider [using Avro serializers](https://www.confluent.io/blog/avro-kafka-data):
 - It is faster to serialize/deserialize.
