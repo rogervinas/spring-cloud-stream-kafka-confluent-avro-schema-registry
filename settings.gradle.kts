@@ -1,4 +1,4 @@
-rootProject.name = "spring-cloud-stream-kafka-schema-registry"
+rootProject.name = "spring-cloud-stream-kafka-avro-schema-registry"
 
 include("consumer")
 include("producer1")
