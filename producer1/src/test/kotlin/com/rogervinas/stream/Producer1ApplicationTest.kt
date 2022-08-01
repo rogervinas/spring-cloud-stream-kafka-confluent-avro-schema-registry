@@ -45,34 +45,34 @@ class Producer1ApplicationTest {
       .apply { withExposedService("schema-registry", SCHEMA_REGISTRY_PORT, Wait.forListeningPort()) }
   }
 
-  @Test
-  fun `should produce sensor v1 message`() {
-    KafkaConsumer<String, GenericRecord>(consumerProperties()).use { consumer ->
-      // Subscribe to topic
-      consumer.subscribe(listOf(SENSOR_TOPIC))
+@Test
+fun `should produce sensor v1 message`() {
+  KafkaConsumer<String, GenericRecord>(consumerProperties()).use { consumer ->
+    // Subscribe to topic
+    consumer.subscribe(listOf(SENSOR_TOPIC))
 
-      // Consume previous messages (just in case)
-      consumer.poll(TIMEOUT)
+    // Consume previous messages (just in case)
+    consumer.poll(TIMEOUT)
 
-      // Produce one message
-      WebTestClient
-        .bindToServer()
-        .baseUrl("http://localhost:$serverPort")
-        .build()
-        .post().uri("/messages").exchange()
-        .expectStatus().isOk
-        .expectBody(String::class.java).isEqualTo("ok, have fun with v1 payload!")
+    // Produce one message
+    WebTestClient
+      .bindToServer()
+      .baseUrl("http://localhost:$serverPort")
+      .build()
+      .post().uri("/messages").exchange()
+      .expectStatus().isOk
+      .expectBody(String::class.java).isEqualTo("ok, have fun with v1 payload!")
 
-      // Consume message
-      assertThat(consumer.poll(TIMEOUT)).singleElement().satisfies(Consumer { record ->
-        val value = record.value()
-        assertThat(value["id"]).isEqualTo("2376-v1")
-        assertThat(value["temperature"]).isEqualTo(33.067642f)
-        assertThat(value["acceleration"]).isEqualTo(3.2810485f)
-        assertThat(value["velocity"]).isEqualTo(84.885544f)
-      })
-    }
+    // Consume message
+    assertThat(consumer.poll(TIMEOUT)).singleElement().satisfies(Consumer { record ->
+      val value = record.value()
+      assertThat(value["id"]).isEqualTo("2376-v1")
+      assertThat(value["temperature"]).isEqualTo(33.067642f)
+      assertThat(value["acceleration"]).isEqualTo(3.2810485f)
+      assertThat(value["velocity"]).isEqualTo(84.885544f)
+    })
   }
+}
 
   private fun consumerProperties() = Properties().apply {
     this[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = "localhost:$BROKER_PORT"

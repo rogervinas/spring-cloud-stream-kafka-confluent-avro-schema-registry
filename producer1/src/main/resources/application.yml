@@ -10,6 +10,8 @@ spring:
           producer:
             useNativeEncoding: true
       kafka:
+        binder:
+          brokers: localhost:9092
         bindings:
           supplier-out-0:
             producer:
