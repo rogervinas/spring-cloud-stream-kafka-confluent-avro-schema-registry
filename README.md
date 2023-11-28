@@ -40,7 +40,7 @@ You can browse older versions of this repo:
 
 Just to keep it simple we will put the consumer and the two producers as modules of a gradle multi-module project, with a little help of [spring initializr](https://start.spring.io).
 
-As we do not use maven like the [schema-registry-confluent-avro-serializer sample](https://github.com/spring-cloud/spring-cloud-stream-samples/tree/main/schema-registry-samples/schema-registry-confluent-avro-serializer), we cannot use the official [avro-maven-plugin](https://avro.apache.org/docs/current/gettingstartedjava.html). We will use [davidmc24/gradle-avro-plugin](https://github.com/davidmc24/gradle-avro-plugin) instead.
+As we do not use maven like the [spring-cloud-stream-schema-registry-integration sample](https://github.com/spring-cloud/spring-cloud-stream-samples/tree/main/spring-cloud-stream-schema-registry-integration), we cannot use the official [avro-maven-plugin](https://avro.apache.org/docs/current/gettingstartedjava.html). We will use [davidmc24/gradle-avro-plugin](https://github.com/davidmc24/gradle-avro-plugin) instead.
 
 We will use a [docker-compose.yml](docker-compose.yml) based on the one from [confluent/cp-all-in-one](https://github.com/confluentinc/cp-all-in-one/blob/7.2.1-post/cp-all-in-one/docker-compose.yml) both to run it locally and to execute the integration tests. From that configuration we will keep only the containers: **zookeeper**, **broker**, **schema-registry** and **control-center**.
 
