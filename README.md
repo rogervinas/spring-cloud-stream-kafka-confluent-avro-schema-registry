@@ -11,7 +11,7 @@ Spring Cloud Stream uses Json serializers by default, but maybe you want to cons
 - It uses a more compact binary form.
 - You can define a schema and compatibility rules between schema versions.
 
-In this demo, based on the [schema-registry-confluent-avro-serializer sample](https://github.com/spring-cloud/spring-cloud-stream-samples/tree/main/schema-registry-samples/schema-registry-confluent-avro-serializer), we will create three Spring Cloud Stream applications, one consumer and two producers, all of them using the [Confluent Schema Registry Server](https://docs.confluent.io/platform/current/schema-registry/index.html) and the [Confluent Avro Serializers](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html).
+In this demo, based on the [spring-cloud-stream-schema-registry-integration sample](https://github.com/spring-cloud/spring-cloud-stream-samples/tree/main/spring-cloud-stream-schema-registry-integration), we will create three Spring Cloud Stream applications, one consumer and two producers, all of them using the [Confluent Schema Registry Server](https://docs.confluent.io/platform/current/schema-registry/index.html) and the [Confluent Avro Serializers](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html).
 
 ![Diagram](doc/diagram.png)
 
