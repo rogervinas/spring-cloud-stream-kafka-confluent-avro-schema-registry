@@ -3,7 +3,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  id("org.springframework.boot") version "2.7.2" apply false
+  id("org.springframework.boot") version "2.7.8" apply false
   id("io.spring.dependency-management") version "1.0.12.RELEASE"
   id("com.github.davidmc24.gradle.plugin.avro") version "1.3.0"
   id("org.jetbrains.kotlin.jvm") version "1.6.21"
@@ -13,6 +13,8 @@ plugins {
 group = "com.rogervinas"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
+
+val springCloudVersion = "2021.0.8"
 
 allprojects {
   repositories {
@@ -30,8 +32,6 @@ subprojects {
   apply(plugin = "org.jetbrains.kotlin.jvm")
   apply(plugin = "org.jetbrains.kotlin.plugin.spring")
 
-  extra["springCloudVersion"] = "2021.0.3"
-
   dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -48,7 +48,7 @@ subprojects {
 
   dependencyManagement {
     imports {
-      mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+      mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
     }
   }
 
