@@ -14,8 +14,8 @@ import org.mockito.Mockito.timeout
 import org.mockito.Mockito.verify
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
-import org.testcontainers.containers.DockerComposeContainer
-import org.testcontainers.containers.wait.strategy.Wait
+import org.testcontainers.containers.ComposeContainer
+import org.testcontainers.containers.wait.strategy.Wait.forListeningPort
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 import java.io.File
@@ -37,10 +37,10 @@ class ConsumerApplicationTest {
     private val TIMEOUT = Duration.ofSeconds(5)
 
     @Container
-    val container = DockerComposeContainer<Nothing>(File("../docker-compose.yml"))
-      .apply { withLocalCompose(true) }
-      .apply { withExposedService("broker", BROKER_PORT, Wait.forListeningPort()) }
-      .apply { withExposedService("schema-registry", SCHEMA_REGISTRY_PORT, Wait.forListeningPort()) }
+    val container = ComposeContainer(File("../docker-compose.yml"))
+      .withLocalCompose(true)
+      .withExposedService("broker", BROKER_PORT, forListeningPort())
+      .withExposedService("schema-registry", SCHEMA_REGISTRY_PORT, forListeningPort())
   }
 
   @MockBean(name = "process")
