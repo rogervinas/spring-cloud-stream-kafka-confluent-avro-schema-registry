@@ -33,6 +33,9 @@ Ready? Let's do it! 🚀
     * :octocat: [Spring Cloud Stream Multibinder](https://github.com/rogervinas/spring-cloud-stream-multibinder)
     * :octocat: [Spring Cloud Stream & Kafka Streams Binder + Processor API](https://github.com/rogervinas/spring-cloud-stream-kafka-streams-processor)
 
+You can browse older versions of this repo:
+* [Spring Boot 2.x](https://github.com/rogervinas/spring-cloud-stream-kafka-confluent-avro-schema-registry/tree/spring-boot-2.x)
+
 ## Creating the project
 
 Just to keep it simple we will put the consumer and the two producers as modules of a gradle multi-module project, with a little help of [spring initializr](https://start.spring.io).
