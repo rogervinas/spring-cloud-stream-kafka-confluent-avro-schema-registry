@@ -7,7 +7,7 @@ plugins {
   id("io.spring.dependency-management") version "1.0.12.RELEASE"
   id("com.github.davidmc24.gradle.plugin.avro") version "1.3.0"
   id("org.jetbrains.kotlin.jvm") version "1.6.21"
-  id("org.jetbrains.kotlin.plugin.spring") version "1.6.21"
+  id("org.jetbrains.kotlin.plugin.spring") version "1.9.21"
 }
 
 group = "com.rogervinas"
