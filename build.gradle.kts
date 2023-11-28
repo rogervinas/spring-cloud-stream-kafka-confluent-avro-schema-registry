@@ -3,25 +3,24 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  id("org.springframework.boot") version "2.7.8" apply false
-  id("io.spring.dependency-management") version "1.0.12.RELEASE"
-  id("com.github.davidmc24.gradle.plugin.avro") version "1.3.0"
-  id("org.jetbrains.kotlin.jvm") version "1.6.21"
-  id("org.jetbrains.kotlin.plugin.spring") version "1.6.21"
+  id("org.springframework.boot") version "3.2.0" apply false
+  id("io.spring.dependency-management") version "1.1.4"
+  id("com.github.davidmc24.gradle.plugin.avro") version "1.9.1"
+  id("org.jetbrains.kotlin.jvm") version "1.9.21"
+  id("org.jetbrains.kotlin.plugin.spring") version "1.9.21"
 }
 
 group = "com.rogervinas"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_21
 
-val springCloudVersion = "2021.0.8"
+val springCloudVersion = "2023.0.0-RC1"
 
 allprojects {
   repositories {
     mavenCentral()
-    maven {
-      url = uri("https://packages.confluent.io/maven")
-    }
+    maven { url = uri("https://repo.spring.io/milestone") }
+    maven { url = uri("https://packages.confluent.io/maven") }
   }
 }
 
@@ -55,7 +54,7 @@ subprojects {
   tasks.withType<KotlinCompile> {
     kotlinOptions {
       freeCompilerArgs = listOf("-Xjsr305=strict")
-      jvmTarget = "11"
+      jvmTarget = "21"
     }
   }
 
