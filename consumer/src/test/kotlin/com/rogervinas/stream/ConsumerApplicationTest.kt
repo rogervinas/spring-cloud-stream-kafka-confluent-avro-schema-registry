@@ -44,7 +44,7 @@ class ConsumerApplicationTest {
   }
 
   @MockBean(name = "myConsumer")
-  private lateinit var myConsumer: (Sensor) -> Unit
+  private lateinit var myConsumer: Consumer<Sensor>
 
   @Test
   fun `should consume sensor v1 message`() {
@@ -77,7 +77,7 @@ class ConsumerApplicationTest {
     produceRecord(id, recordV1)
 
     verify(myConsumer, timeout(TIMEOUT.toMillis()))
-      .invoke(Sensor(id, temperature, 0f, acceleration, velocity))
+      .accept(Sensor(id, temperature, 0f, acceleration, velocity))
   }
 
   @Test
@@ -118,7 +118,7 @@ class ConsumerApplicationTest {
     produceRecord(id, recordV2)
 
     verify(myConsumer, timeout(TIMEOUT.toMillis()))
-      .invoke(Sensor(id, internalTemperature, externalTemperature, acceleration, velocity))
+      .accept(Sensor(id, internalTemperature, externalTemperature, acceleration, velocity))
   }
 
   private fun createRecord(schema: String): GenericRecord {

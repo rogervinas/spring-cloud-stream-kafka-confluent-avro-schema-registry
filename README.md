@@ -308,7 +308,7 @@ To produce test messages we will use a simple [KafkaProducer using the Avro Seri
 First of all we will mock the `process` @Bean so we can verify it has been called:
 ```kotlin
 @MockBean(name = "myConsumer")
-private lateinit var myConsumer: (Sensor) -> Unit
+private lateinit var myConsumer: Consumer<Sensor>
 ```
 
 Then we test that we can consume Sensor v1 messages:
@@ -344,7 +344,7 @@ fun `should consume sensor v1 message`() {
   produceRecord(id, recordV1)
   
   verify(myConsumer, timeout(TIMEOUT.toMillis()))
-    .invoke(Sensor(id, temperature, 0f, acceleration, velocity))
+    .accept(Sensor(id, temperature, 0f, acceleration, velocity))
 }
 ```
 
@@ -388,7 +388,7 @@ fun `should consume sensor v2 message`() {
  produceRecord(id, recordV2)
  
  verify(myConsumer, timeout(TIMEOUT.toMillis()))
-   .invoke(Sensor(id, internalTemperature, externalTemperature, acceleration, velocity))
+   .accept(Sensor(id, internalTemperature, externalTemperature, acceleration, velocity))
 }
 ```
 
