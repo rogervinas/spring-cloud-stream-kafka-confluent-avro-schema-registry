@@ -3,9 +3,11 @@ server:
 
 spring:
   cloud:
+    function:
+      definition: "myConsumer"
     stream:
       bindings:
-        process-in-0:
+        myConsumer-in-0:
           destination: sensor-topic
           consumer:
             useNativeDecoding: true
@@ -13,7 +15,7 @@ spring:
         binder:
           brokers: localhost:9092
         bindings:
-          process-in-0:
+          myConsumer-in-0:
             consumer:
               configuration:
                 value.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer

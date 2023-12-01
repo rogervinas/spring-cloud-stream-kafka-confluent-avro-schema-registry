@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.LinkedBlockingQueue
-import java.util.function.Supplier
 import kotlin.random.Random
 
 @SpringBootApplication
@@ -23,7 +22,7 @@ class Application {
   @Autowired private lateinit var random: Random
 
   @Bean
-  fun supplier() = Supplier { unbounded.poll() }
+  fun myProducer(): () -> Sensor? = { unbounded.poll() }
 
   @RequestMapping(value = ["/messages"], method = [RequestMethod.POST])
   fun sendMessage(): String {

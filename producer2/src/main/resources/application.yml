@@ -3,9 +3,11 @@ server:
 
 spring:
   cloud:
+    function:
+      definition: "myProducer"
     stream:
       bindings:
-        supplier-out-0:
+        myProducer-out-0:
           destination: sensor-topic
           producer:
             useNativeEncoding: true
@@ -13,7 +15,7 @@ spring:
         binder:
           brokers: localhost:9092
         bindings:
-          supplier-out-0:
+          myProducer-out-0:
             producer:
               configuration:
                 value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
