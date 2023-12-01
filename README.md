@@ -83,6 +83,8 @@ Using this configuration:
 ```yaml
 spring:
   cloud:
+    function:
+      definition: "myProducer"
     stream:
       bindings:
         myProducer-out-0:
@@ -119,7 +121,7 @@ class Application {
   @Autowired private lateinit var random: Random
 
   @Bean
-  fun myProducer(): () -> Sensor = { unbounded.poll() }
+  fun myProducer(): () -> Sensor? = { unbounded.poll() }
 
   @RequestMapping(value = ["/messages"], method = [RequestMethod.POST])
   fun sendMessage(): String {
@@ -256,6 +258,8 @@ Then, using this configuration:
 ```yaml
 spring:
   cloud:
+    function:
+      definition: "myConsumer"
     stream:
       bindings:
         myConsumer-in-0:
@@ -304,7 +308,7 @@ To produce test messages we will use a simple [KafkaProducer using the Avro Seri
 First of all we will mock the `process` @Bean so we can verify it has been called:
 ```kotlin
 @MockBean(name = "myConsumer")
-private lateinit var myConsumer: Consumer<Sensor>
+private lateinit var myConsumer: (Sensor) -> Unit
 ```
 
 Then we test that we can consume Sensor v1 messages:
@@ -340,7 +344,7 @@ fun `should consume sensor v1 message`() {
   produceRecord(id, recordV1)
   
   verify(myConsumer, timeout(TIMEOUT.toMillis()))
-    .accept(Sensor(id, temperature, 0f, acceleration, velocity))
+    .invoke(Sensor(id, temperature, 0f, acceleration, velocity))
 }
 ```
 
@@ -384,7 +388,7 @@ fun `should consume sensor v2 message`() {
  produceRecord(id, recordV2)
  
  verify(myConsumer, timeout(TIMEOUT.toMillis()))
-   .accept(Sensor(id, internalTemperature, externalTemperature, acceleration, velocity))
+   .invoke(Sensor(id, internalTemperature, externalTemperature, acceleration, velocity))
 }
 ```
 

@@ -3,6 +3,8 @@ server:
 
 spring:
   cloud:
+    function:
+      definition: "myConsumer"
     stream:
       bindings:
         myConsumer-in-0:

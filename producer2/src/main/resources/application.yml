@@ -3,6 +3,8 @@ server:
 
 spring:
   cloud:
+    function:
+      definition: "myProducer"
     stream:
       bindings:
         myProducer-out-0:

@@ -22,7 +22,7 @@ class Application {
   @Autowired private lateinit var random: Random
 
   @Bean
-  fun myProducer(): () -> Sensor = { unbounded.poll() }
+  fun myProducer(): () -> Sensor? = { unbounded.poll() }
 
   @RequestMapping(value = ["/messages"], method = [RequestMethod.POST])
   fun sendMessage(): String {
