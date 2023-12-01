@@ -3,8 +3,8 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  id("org.springframework.boot") version "3.2.0" apply false
-  id("io.spring.dependency-management") version "1.1.4"
+  id("org.springframework.boot") version "2.7.8" apply false
+  id("io.spring.dependency-management") version "1.0.15.RELEASE"
   id("com.github.davidmc24.gradle.plugin.avro") version "1.9.1"
   id("org.jetbrains.kotlin.jvm") version "1.9.21"
   id("org.jetbrains.kotlin.plugin.spring") version "1.9.21"
@@ -12,9 +12,9 @@ plugins {
 
 group = "com.rogervinas"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_21
+java.sourceCompatibility = JavaVersion.VERSION_17
 
-val springCloudVersion = "2023.0.0-RC1"
+val springCloudVersion = "2021.0.8"
 
 allprojects {
   repositories {
@@ -54,7 +54,7 @@ subprojects {
   tasks.withType<KotlinCompile> {
     kotlinOptions {
       freeCompilerArgs = listOf("-Xjsr305=strict")
-      jvmTarget = "21"
+      jvmTarget = "17"
     }
   }
 

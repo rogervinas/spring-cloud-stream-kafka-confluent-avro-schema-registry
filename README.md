@@ -1,8 +1,8 @@
 [![CI](https://github.com/rogervinas/spring-cloud-stream-kafka-avro-schema-registry/actions/workflows/gradle.yml/badge.svg)](https://github.com/rogervinas/spring-cloud-stream-kafka-avro-schema-registry/actions/workflows/gradle.yml)
-![Java](https://img.shields.io/badge/Java-21-blue?labelColor=black)
+![Java](https://img.shields.io/badge/Java-17-blue?labelColor=black)
 ![Kotlin](https://img.shields.io/badge/Kotlin-1.9.21-blue?labelColor=black)
-![SpringBoot](https://img.shields.io/badge/SpringBoot-3.2.0-blue?labelColor=black)
-![SpringCloud](https://img.shields.io/badge/SpringCloud-2023.0.0_RC1-blue?labelColor=black)
+![SpringBoot](https://img.shields.io/badge/SpringBoot-2.7.8-blue?labelColor=black)
+![SpringCloud](https://img.shields.io/badge/SpringCloud-2021.0.8-blue?labelColor=black)
 
 # Spring Cloud Stream Kafka & Confluent Avro Schema Registry
 
@@ -308,7 +308,7 @@ To produce test messages we will use a simple [KafkaProducer using the Avro Seri
 First of all we will mock the `process` @Bean so we can verify it has been called:
 ```kotlin
 @MockBean(name = "myConsumer")
-private lateinit var myConsumer: (Sensor) -> Unit
+private lateinit var myConsumer: Consumer<Sensor>
 ```
 
 Then we test that we can consume Sensor v1 messages:
@@ -344,7 +344,7 @@ fun `should consume sensor v1 message`() {
   produceRecord(id, recordV1)
   
   verify(myConsumer, timeout(TIMEOUT.toMillis()))
-    .invoke(Sensor(id, temperature, 0f, acceleration, velocity))
+    .accept(Sensor(id, temperature, 0f, acceleration, velocity))
 }
 ```
 
@@ -388,7 +388,7 @@ fun `should consume sensor v2 message`() {
  produceRecord(id, recordV2)
  
  verify(myConsumer, timeout(TIMEOUT.toMillis()))
-   .invoke(Sensor(id, internalTemperature, externalTemperature, acceleration, velocity))
+   .accept(Sensor(id, internalTemperature, externalTemperature, acceleration, velocity))
 }
 ```
 
