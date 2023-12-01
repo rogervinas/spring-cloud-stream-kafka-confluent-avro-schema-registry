@@ -9,7 +9,7 @@ import java.util.function.Consumer
 @SpringBootApplication
 class Application {
   @Bean
-  fun process() = Consumer { input: Sensor -> println("Consumed $input") }
+  fun myConsumer(): (Sensor) -> Unit = { println("Consumed $it") }
 }
 
 fun main(args: Array<String>) {

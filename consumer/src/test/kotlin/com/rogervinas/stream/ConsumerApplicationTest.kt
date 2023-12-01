@@ -43,8 +43,8 @@ class ConsumerApplicationTest {
       .withExposedService("schema-registry", SCHEMA_REGISTRY_PORT, forListeningPort())
   }
 
-  @MockBean(name = "process")
-  private lateinit var process: Consumer<Sensor>
+  @MockBean(name = "myConsumer")
+  private lateinit var myConsumer: Consumer<Sensor>
 
   @Test
   fun `should consume sensor v1 message`() {
@@ -76,7 +76,7 @@ class ConsumerApplicationTest {
 
     produceRecord(id, recordV1)
 
-    verify(process, timeout(TIMEOUT.toMillis()))
+    verify(myConsumer, timeout(TIMEOUT.toMillis()))
       .accept(Sensor(id, temperature, 0f, acceleration, velocity))
   }
 
@@ -117,7 +117,7 @@ class ConsumerApplicationTest {
 
     produceRecord(id, recordV2)
 
-    verify(process, timeout(TIMEOUT.toMillis()))
+    verify(myConsumer, timeout(TIMEOUT.toMillis()))
       .accept(Sensor(id, internalTemperature, externalTemperature, acceleration, velocity))
   }
 

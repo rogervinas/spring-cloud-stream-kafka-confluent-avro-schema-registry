@@ -85,7 +85,7 @@ spring:
   cloud:
     stream:
       bindings:
-        supplier-out-0:
+        myProducer-out-0:
           destination: sensor-topic
           producer:
             useNativeEncoding: true
@@ -93,7 +93,7 @@ spring:
         binder:
           brokers: localhost:9092
         bindings:
-          supplier-out-0:
+          myProducer-out-0:
             producer:
               configuration:
                 value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
@@ -101,7 +101,9 @@ spring:
 ```
 
 Then Spring Cloud Stream:
-* Will expect us to implement a @Bean named `supplier` of type `java.util.function.Supplier` returning a value or a `reactor.core.publisher.Flux` of values.
+* Will expect us to implement a @Bean named `myProducer` returning a value or a `Flux` of values:
+  * In **Kotlin** we can use a lambda `() -> Value` or `() -> Flux<Value>`.
+  * In **Java** we can use a `Supplier<Value>` or `Supplier<Flux<Value>>`.
 * Will call this @Bean one or many times to retrieve the values to be published.
 * Will connect to a kafka broker on `localhost:9092`.
 * Will use the confluent `KafkaAvroSerializer` and connect to the schema registry server on `localhost:8081`.
@@ -117,7 +119,7 @@ class Application {
   @Autowired private lateinit var random: Random
 
   @Bean
-  fun supplier() = Supplier { unbounded.poll() }
+  fun myProducer(): () -> Sensor = { unbounded.poll() }
 
   @RequestMapping(value = ["/messages"], method = [RequestMethod.POST])
   fun sendMessage(): String {
@@ -256,7 +258,7 @@ spring:
   cloud:
     stream:
       bindings:
-        process-in-0:
+        myConsumer-in-0:
           destination: sensor-topic
           consumer:
             useNativeDecoding: true
@@ -264,7 +266,7 @@ spring:
         binder:
           brokers: localhost:9092
         bindings:
-          process-in-0:
+          myConsumer-in-0:
             consumer:
               configuration:
                 value.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
@@ -273,7 +275,9 @@ spring:
 ```
 
 Spring Cloud Stream:
-* Will expect us to implement a @Bean named `process` of type `java.util.function.Consumer` accepting a value.
+* Will expect us to implement a @Bean named `myConsumer` accepting a value:
+  * In **Kotlin** we can use a lambda `(Value) -> Unit`.
+  * In **Java** we can use a `Consumer<Value>`.
 * Will call this @Bean every time a value is consumed.
 * Will connect to a kafka broker on `localhost:9092`.
 * Will use the confluent `KafkaAvroDeserializer` and connect to the schema registry server on `localhost:8081`.
@@ -283,7 +287,7 @@ So for the sake of a demo the implementation can be as simple as:
 @SpringBootApplication
 class Application {
   @Bean
-  fun process() = Consumer { input: Sensor -> println("Consumed $input") }
+  fun myConsumer(): (Sensor) -> Unit = { println("Consumed $it") }
 }
 
 fun main(args: Array<String>) {
@@ -299,8 +303,8 @@ To produce test messages we will use a simple [KafkaProducer using the Avro Seri
 
 First of all we will mock the `process` @Bean so we can verify it has been called:
 ```kotlin
-@MockBean(name = "process")
-private lateinit var process: Consumer<Sensor>
+@MockBean(name = "myConsumer")
+private lateinit var myConsumer: Consumer<Sensor>
 ```
 
 Then we test that we can consume Sensor v1 messages:
@@ -335,7 +339,7 @@ fun `should consume sensor v1 message`() {
   
   produceRecord(id, recordV1)
   
-  verify(process, timeout(TIMEOUT.toMillis()))
+  verify(myConsumer, timeout(TIMEOUT.toMillis()))
     .accept(Sensor(id, temperature, 0f, acceleration, velocity))
 }
 ```
@@ -379,7 +383,7 @@ fun `should consume sensor v2 message`() {
  
  produceRecord(id, recordV2)
  
- verify(process, timeout(TIMEOUT.toMillis()))
+ verify(myConsumer, timeout(TIMEOUT.toMillis()))
    .accept(Sensor(id, internalTemperature, externalTemperature, acceleration, velocity))
 }
 ```
