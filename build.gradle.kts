@@ -41,7 +41,7 @@ subprojects {
     implementation("org.apache.avro:avro:1.11.3")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.testcontainers:junit-jupiter:1.19.7")
+    testImplementation("org.testcontainers:junit-jupiter:1.19.8")
   }
 
   dependencyManagement {
