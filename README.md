@@ -2,7 +2,7 @@
 ![Java](https://img.shields.io/badge/Java-21-blue?labelColor=black)
 ![Kotlin](https://img.shields.io/badge/Kotlin-2.0.0-blue?labelColor=black)
 ![SpringBoot](https://img.shields.io/badge/SpringBoot-3.3.0-blue?labelColor=black)
-![SpringCloud](https://img.shields.io/badge/SpringCloud-2023.0.1-blue?labelColor=black)
+![SpringCloud](https://img.shields.io/badge/SpringCloud-2023.0.2-blue?labelColor=black)
 
 # Spring Cloud Stream Kafka & Confluent Avro Schema Registry
 

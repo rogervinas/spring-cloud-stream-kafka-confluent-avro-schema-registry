@@ -14,7 +14,7 @@ group = "com.rogervinas"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
-val springCloudVersion = "2023.0.1"
+val springCloudVersion = "2023.0.2"
 
 allprojects {
   repositories {
