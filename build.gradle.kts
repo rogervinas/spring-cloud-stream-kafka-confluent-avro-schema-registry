@@ -15,7 +15,7 @@ plugins {
 group = "com.rogervinas"
 version = "0.0.1-SNAPSHOT"
 
-val springCloudVersion = "2023.0.2"
+val springCloudVersion = "2023.0.3"
 
 allprojects {
   repositories {
