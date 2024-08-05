@@ -38,11 +38,11 @@ subprojects {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.cloud:spring-cloud-starter-stream-kafka")
 
-    implementation("io.confluent:kafka-avro-serializer:7.6.2")
-    implementation("org.apache.avro:avro:1.11.3")
+    implementation("io.confluent:kafka-avro-serializer:7.7.0")
+    implementation("org.apache.avro:avro:1.12.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.testcontainers:junit-jupiter:1.20.0")
+    testImplementation("org.testcontainers:junit-jupiter:1.20.1")
   }
 
   dependencyManagement {
