@@ -4,7 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 
 plugins {
-  id("org.springframework.boot") version "3.3.3" apply false
+  id("org.springframework.boot") version "3.3.4" apply false
   id("io.spring.dependency-management") version "1.1.6"
   id("com.github.davidmc24.gradle.plugin.avro") version "1.9.1"
   id("org.jetbrains.kotlin.jvm") version "2.0.20"
@@ -38,7 +38,7 @@ subprojects {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.cloud:spring-cloud-starter-stream-kafka")
 
-    implementation("io.confluent:kafka-avro-serializer:7.7.0")
+    implementation("io.confluent:kafka-avro-serializer:7.7.1")
     implementation("org.apache.avro:avro:1.12.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
