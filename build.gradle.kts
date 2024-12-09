@@ -4,18 +4,18 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 
 plugins {
-  id("org.springframework.boot") version "3.3.5" apply false
+  id("org.springframework.boot") version "3.4.0" apply false
   id("io.spring.dependency-management") version "1.1.6"
   id("com.github.davidmc24.gradle.plugin.avro") version "1.9.1"
-  id("org.jetbrains.kotlin.jvm") version "2.0.21"
-  id("org.jetbrains.kotlin.plugin.spring") version "2.0.21"
-  id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
+  id("org.jetbrains.kotlin.jvm") version "2.1.0"
+  id("org.jetbrains.kotlin.plugin.spring") version "2.1.0"
+  id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
 }
 
 group = "com.rogervinas"
 version = "0.0.1-SNAPSHOT"
 
-val springCloudVersion = "2023.0.3"
+val springCloudVersion = "2024.0.0"
 
 allprojects {
   repositories {
@@ -38,11 +38,11 @@ subprojects {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.cloud:spring-cloud-starter-stream-kafka")
 
-    implementation("io.confluent:kafka-avro-serializer:7.7.1")
+    implementation("io.confluent:kafka-avro-serializer:7.8.0")
     implementation("org.apache.avro:avro:1.12.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.testcontainers:junit-jupiter:1.20.3")
+    testImplementation("org.testcontainers:junit-jupiter:1.20.4")
   }
 
   dependencyManagement {
