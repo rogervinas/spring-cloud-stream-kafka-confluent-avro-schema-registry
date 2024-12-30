@@ -1,8 +1,8 @@
 [![CI](https://github.com/rogervinas/spring-cloud-stream-kafka-avro-schema-registry/actions/workflows/ci.yml/badge.svg)](https://github.com/rogervinas/spring-cloud-stream-kafka-avro-schema-registry/actions/workflows/ci.yml)
 ![Java](https://img.shields.io/badge/Java-21-blue?labelColor=black)
 ![Kotlin](https://img.shields.io/badge/Kotlin-2.x-blue?labelColor=black)
-![SpringBoot](https://img.shields.io/badge/SpringBoot-3.3.x-blue?labelColor=black)
-![SpringCloud](https://img.shields.io/badge/SpringCloud-2023.0.3-blue?labelColor=black)
+![SpringBoot](https://img.shields.io/badge/SpringBoot-3.x-blue?labelColor=black)
+![SpringCloud](https://img.shields.io/badge/SpringCloud-2024.x-blue?labelColor=black)
 
 # Spring Cloud Stream Kafka & Confluent Avro Schema Registry
 
