@@ -13,3 +13,12 @@ updates:
     directory: /
     schedule:
       interval: weekly
+  - package-ecosystem: docker-compose
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      dependencies:
+        applies-to: version-updates
+        patterns:
+          - "*"
