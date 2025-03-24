@@ -4,18 +4,18 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 
 plugins {
-  id("org.springframework.boot") version "3.4.3" apply false
+  id("org.springframework.boot") version "3.4.4" apply false
   id("io.spring.dependency-management") version "1.1.7"
   id("com.github.davidmc24.gradle.plugin.avro") version "1.9.1"
-  id("org.jetbrains.kotlin.jvm") version "2.1.10"
-  id("org.jetbrains.kotlin.plugin.spring") version "2.1.10"
+  id("org.jetbrains.kotlin.jvm") version "2.1.20"
+  id("org.jetbrains.kotlin.plugin.spring") version "2.1.20"
   id("org.jlleitschuh.gradle.ktlint") version "12.2.0"
 }
 
 group = "com.rogervinas"
 version = "0.0.1-SNAPSHOT"
 
-val springCloudVersion = "2024.0.0"
+val springCloudVersion = "2024.0.1"
 
 allprojects {
   repositories {
