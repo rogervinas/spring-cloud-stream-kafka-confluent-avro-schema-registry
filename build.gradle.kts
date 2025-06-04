@@ -15,7 +15,7 @@ plugins {
 group = "com.rogervinas"
 version = "0.0.1-SNAPSHOT"
 
-val springCloudVersion = "2024.0.1"
+val springCloudVersion = "2025.0.0"
 
 allprojects {
   repositories {
@@ -42,7 +42,7 @@ subprojects {
     implementation("org.apache.avro:avro:1.12.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.testcontainers:junit-jupiter:1.21.0")
+    testImplementation("org.testcontainers:junit-jupiter:1.21.1")
   }
 
   dependencyManagement {
