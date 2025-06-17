@@ -4,7 +4,6 @@ import com.example.Sensor
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
-import java.util.function.Consumer
 
 @SpringBootApplication
 class Application {
