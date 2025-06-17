@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito.timeout
 import org.mockito.Mockito.verify
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.testcontainers.containers.ComposeContainer
 import org.testcontainers.containers.wait.strategy.Wait.forListeningPort
 import org.testcontainers.junit.jupiter.Container
@@ -22,7 +22,6 @@ import java.io.File
 import java.time.Duration
 import java.util.Properties
 import java.util.UUID
-import java.util.function.Consumer
 
 
 @SpringBootTest
@@ -30,7 +29,9 @@ import java.util.function.Consumer
 class ConsumerApplicationTest {
 
   companion object {
+    private const val BROKER = "broker"
     private const val BROKER_PORT = 9092
+    private const val SCHEMA_REGISTRY = "schema-registry"
     private const val SCHEMA_REGISTRY_PORT = 8081
     private const val SENSOR_TOPIC = "sensor-topic"
 
@@ -39,11 +40,11 @@ class ConsumerApplicationTest {
     @Container
     val container = ComposeContainer(File("../docker-compose.yml"))
       .withLocalCompose(true)
-      .withExposedService("broker", BROKER_PORT, forListeningPort())
-      .withExposedService("schema-registry", SCHEMA_REGISTRY_PORT, forListeningPort())
+      .withExposedService(BROKER, BROKER_PORT, forListeningPort())
+      .withExposedService(SCHEMA_REGISTRY, SCHEMA_REGISTRY_PORT, forListeningPort())
   }
 
-  @MockBean(name = "myConsumer")
+  @MockitoBean(name = "myConsumer")
   private lateinit var myConsumer: (Sensor) -> Unit
 
   @Test

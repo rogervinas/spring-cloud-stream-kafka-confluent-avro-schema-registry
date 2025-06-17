@@ -32,7 +32,9 @@ class Producer1ApplicationTest {
   private var serverPort: Int = 0
 
   companion object {
+    private const val BROKER = "broker"
     private const val BROKER_PORT = 9092
+    private const val SCHEMA_REGISTRY = "schema-registry"
     private const val SCHEMA_REGISTRY_PORT = 8081
     private const val SENSOR_TOPIC = "sensor-topic"
 
@@ -41,8 +43,8 @@ class Producer1ApplicationTest {
     @Container
     val container = ComposeContainer(File("../docker-compose.yml"))
       .withLocalCompose(true)
-      .withExposedService("broker", BROKER_PORT, forListeningPort())
-      .withExposedService("schema-registry", SCHEMA_REGISTRY_PORT, forListeningPort())
+      .withExposedService(BROKER, BROKER_PORT, forListeningPort())
+      .withExposedService(SCHEMA_REGISTRY, SCHEMA_REGISTRY_PORT, forListeningPort())
   }
 
 @Test
