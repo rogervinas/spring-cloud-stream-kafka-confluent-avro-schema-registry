@@ -4,11 +4,11 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 
 plugins {
-  id("org.springframework.boot") version "3.5.0" apply false
+  id("org.springframework.boot") version "3.5.3" apply false
   id("io.spring.dependency-management") version "1.1.7"
   id("com.github.davidmc24.gradle.plugin.avro") version "1.9.1"
-  id("org.jetbrains.kotlin.jvm") version "2.1.21"
-  id("org.jetbrains.kotlin.plugin.spring") version "2.1.21"
+  id("org.jetbrains.kotlin.jvm") version "2.2.0"
+  id("org.jetbrains.kotlin.plugin.spring") version "2.2.0"
   id("org.jlleitschuh.gradle.ktlint") version "12.3.0"
 }
 
@@ -42,7 +42,7 @@ subprojects {
     implementation("org.apache.avro:avro:1.12.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.testcontainers:junit-jupiter:1.21.1")
+    testImplementation("org.testcontainers:junit-jupiter:1.21.2")
   }
 
   dependencyManagement {
