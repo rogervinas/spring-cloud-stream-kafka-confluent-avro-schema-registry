@@ -1,7 +1,7 @@
 services:
 
   broker:
-    image: confluentinc/cp-server:8.0.0
+    image: confluentinc/cp-server:8.0.1
     hostname: broker
     ports:
       - "9092:9092"
@@ -35,7 +35,7 @@ services:
       CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
 
   schema-registry:
-    image: confluentinc/cp-schema-registry:8.0.0
+    image: confluentinc/cp-schema-registry:8.0.1
     hostname: schema-registry
     depends_on:
       - broker
