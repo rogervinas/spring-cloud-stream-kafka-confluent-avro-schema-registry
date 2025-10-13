@@ -38,7 +38,7 @@ subprojects {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.cloud:spring-cloud-starter-stream-kafka")
 
-    implementation("io.confluent:kafka-avro-serializer:8.0.1")
+    implementation("io.confluent:kafka-avro-serializer:8.0.2")
     implementation("org.apache.avro:avro:1.12.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
