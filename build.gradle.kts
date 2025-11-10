@@ -9,7 +9,7 @@ plugins {
   id("com.github.davidmc24.gradle.plugin.avro") version "1.9.1"
   id("org.jetbrains.kotlin.jvm") version "2.2.21"
   id("org.jetbrains.kotlin.plugin.spring") version "2.2.21"
-  id("org.jlleitschuh.gradle.ktlint") version "13.1.0"
+  id("org.jlleitschuh.gradle.ktlint") version "14.0.1"
 }
 
 group = "com.rogervinas"
