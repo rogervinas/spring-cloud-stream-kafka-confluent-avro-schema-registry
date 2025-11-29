@@ -65,18 +65,14 @@ This producer will send Sensor messages in v1 format as specified in [producer1/
 }
 ```
 
-The [davidmc24/gradle-avro-plugin](https://github.com/davidmc24/gradle-avro-plugin) will generate java code similar to:
-```java
-public class Sensor {
-    public Sensor(String id, Float temperature, Float acceleration, Float velocity) {
-        this.id = id;
-        this.temperature = temperature;
-        this.acceleration = acceleration;
-        this.velocity = velocity;
-    }
-    
-    // Getters and Setters
-}
+The [io.github.avro-kotlin](https://plugins.gradle.org/plugin/io.github.avro-kotlin) will generate kotlin code similar to:
+```kotlin
+public data class Sensor(
+  public val id: String,
+  public val temperature: Float = 0.0f,
+  public val acceleration: Float = 0.0f,
+  public val velocity: Float = 0.0f,
+)
 ```
 
 Using this configuration:
@@ -129,12 +125,12 @@ class Application {
     return "ok, have fun with $version payload!"
   }
 
-  private fun randomSensor() = Sensor().apply {
-    this.id = random.nextInt(1000, 9999).toString() + "-$version"
-    this.acceleration = random.nextFloat() * 10
-    this.velocity = random.nextFloat() * 100
-    this.temperature = random.nextFloat() * 50
-  }
+  private fun randomSensor() = Sensor(
+    id = random.nextInt(1000, 9999).toString() + "-$version",
+    acceleration = random.nextFloat() * 10,
+    velocity = random.nextFloat() * 100,
+    temperature = random.nextFloat() * 50
+  )
 }
 
 fun main(args: Array<String>) {
