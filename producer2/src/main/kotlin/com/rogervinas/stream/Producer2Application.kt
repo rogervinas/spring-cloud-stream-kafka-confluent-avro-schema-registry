@@ -30,15 +30,15 @@ class Application {
     return "ok, have fun with $version payload!"
   }
 
-  private fun randomSensor() = Sensor().apply {
-    this.id = random.nextInt(1000, 9999).toString() + "-$version"
-    this.acceleration = random.nextFloat() * 10
-    this.velocity = random.nextFloat() * 100
-    this.internalTemperature = random.nextFloat() * 50
-    this.externalTemperature = random.nextFloat() * 50
-    this.accelerometer = (1..random.nextInt(0, 5)).map { random.nextFloat() * 10 }
-    this.magneticField = (1..random.nextInt(0, 5)).map { random.nextFloat() }
-  }
+  private fun randomSensor() = Sensor(
+    id = random.nextInt(1000, 9999).toString() + "-$version",
+    acceleration = random.nextFloat() * 10,
+    velocity = random.nextFloat() * 100,
+    internalTemperature = random.nextFloat() * 50,
+    externalTemperature = random.nextFloat() * 50,
+    accelerometer = (1..random.nextInt(0, 5)).map { random.nextFloat() * 10 },
+    magneticField = (1..random.nextInt(0, 5)).map { random.nextFloat() }
+  )
 }
 
 @Configuration
