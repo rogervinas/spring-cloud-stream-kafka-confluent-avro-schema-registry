@@ -39,7 +39,6 @@ class ConsumerApplicationTest {
 
     @Container
     val container = ComposeContainer(File("../docker-compose.yml"))
-      .withLocalCompose(true)
       .withExposedService(BROKER, BROKER_PORT, forListeningPort())
       .withExposedService(SCHEMA_REGISTRY, SCHEMA_REGISTRY_PORT, forListeningPort())
   }
