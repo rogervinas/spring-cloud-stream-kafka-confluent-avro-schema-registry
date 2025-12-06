@@ -6,7 +6,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 plugins {
   id("org.springframework.boot") version "3.5.7" apply false
   id("io.spring.dependency-management") version "1.1.7"
-  id("com.github.davidmc24.gradle.plugin.avro") version "1.9.1"
+  id("io.github.androa.gradle.plugin.avro") version "0.0.12"
   id("org.jetbrains.kotlin.jvm") version "2.2.21"
   id("org.jetbrains.kotlin.plugin.spring") version "2.2.21"
   id("org.jlleitschuh.gradle.ktlint") version "14.0.1"
@@ -27,7 +27,7 @@ allprojects {
 subprojects {
   apply(plugin = "org.springframework.boot")
   apply(plugin = "io.spring.dependency-management")
-  apply(plugin = "com.github.davidmc24.gradle.plugin.avro")
+  apply(plugin = "io.github.androa.gradle.plugin.avro")
   apply(plugin = "org.jetbrains.kotlin.jvm")
   apply(plugin = "org.jetbrains.kotlin.plugin.spring")
 

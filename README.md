@@ -64,18 +64,15 @@ This producer will send Sensor messages in v1 format as specified in [producer1/
 }
 ```
 
-The [davidmc24/gradle-avro-plugin](https://github.com/davidmc24/gradle-avro-plugin) will generate java code similar to:
+You can search for a compatible Gradle Avro plugin at [plugins.gradle.org/search?term=avro](https://plugins.gradle.org/search?term=avro)
+In this case we use [io.github.androa.gradle.plugin.avro](https://plugins.gradle.org/plugin/io.github.androa.gradle.plugin.avro) which will generate Java code similar to:
 ```java
-public class Sensor {
-    public Sensor(String id, Float temperature, Float acceleration, Float velocity) {
-        this.id = id;
-        this.temperature = temperature;
-        this.acceleration = acceleration;
-        this.velocity = velocity;
-    }
-    
-    // Getters and Setters
-}
+public Sensor(
+  String id,
+  Float temperature,
+  Float acceleration,
+  Float velocity
+) {}
 ```
 
 Using this configuration:
