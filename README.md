@@ -39,7 +39,7 @@ You can browse older versions of this repo:
 
 Just to keep it simple we will put the consumer and the two producers as modules of a gradle multi-module project, with a little help of [spring initializr](https://start.spring.io).
 
-As we do not use maven like the [spring-cloud-stream-schema-registry-integration sample](https://github.com/spring-cloud/spring-cloud-stream-samples/tree/main/spring-cloud-stream-schema-registry-integration), we cannot use the official [avro-maven-plugin](https://avro.apache.org/docs/current/gettingstartedjava.html). We will use [io.github.androa.gradle.plugin.avro](https://plugins.gradle.org/plugin/io.github.androa.gradle.plugin.avro) instead. You can find other compatible gradle Avro plugins at [plugins.gradle.org/search?term=avro](https://plugins.gradle.org/search?term=avro)
+As we do not use maven like the [spring-cloud-stream-schema-registry-integration sample](https://github.com/spring-cloud/spring-cloud-stream-samples/tree/main/spring-cloud-stream-schema-registry-integration), we cannot use the official [avro-maven-plugin](https://avro.apache.org/docs/current/gettingstartedjava.html). We will use [io.github.androa.gradle.plugin.avro](https://plugins.gradle.org/plugin/io.github.androa.gradle.plugin.avro) instead. You can find other compatible gradle avro plugins at [plugins.gradle.org/search?term=avro](https://plugins.gradle.org/search?term=avro)
 
 We will use a [docker-compose.yml](docker-compose.yml) based on the one from [confluent/cp-all-in-one](https://github.com/confluentinc/cp-all-in-one/blob/v8.0.0/cp-all-in-one/docker-compose.yml) both to run it locally and to execute the integration tests. From that configuration we will keep only the containers: **broker**, **schema-registry** and **control-center**.
 
