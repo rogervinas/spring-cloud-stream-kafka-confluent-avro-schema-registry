@@ -32,14 +32,14 @@ subprojects {
   apply(plugin = "org.jetbrains.kotlin.plugin.spring")
 
   dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.cloud:spring-cloud-starter-stream-kafka")
 
     implementation("io.confluent:kafka-avro-serializer:8.1.1")
     implementation("org.apache.avro:avro:1.12.1")
+
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.testcontainers:junit-jupiter:1.21.3")
