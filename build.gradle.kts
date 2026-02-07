@@ -4,7 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 
 plugins {
-  id("org.springframework.boot") version "4.0.1" apply false
+  id("org.springframework.boot") version "4.0.2" apply false
   id("io.spring.dependency-management") version "1.1.7"
   id("io.github.androa.gradle.plugin.avro") version "0.0.12"
   id("org.jetbrains.kotlin.jvm") version "2.3.0"
@@ -15,7 +15,7 @@ plugins {
 group = "com.rogervinas"
 version = "0.0.1-SNAPSHOT"
 
-val springCloudVersion = "2025.1.0"
+val springCloudVersion = "2025.1.1"
 
 allprojects {
   repositories {
