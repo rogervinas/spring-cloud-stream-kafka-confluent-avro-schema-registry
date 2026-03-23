@@ -4,12 +4,12 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 
 plugins {
-  id("org.springframework.boot") version "4.0.3" apply false
+  id("org.springframework.boot") version "4.0.4" apply false
   id("io.spring.dependency-management") version "1.1.7"
   id("io.github.androa.gradle.plugin.avro") version "0.0.12"
-  id("org.jetbrains.kotlin.jvm") version "2.3.10"
-  id("org.jetbrains.kotlin.plugin.spring") version "2.3.10"
-  id("org.jlleitschuh.gradle.ktlint") version "14.0.1"
+  id("org.jetbrains.kotlin.jvm") version "2.3.20"
+  id("org.jetbrains.kotlin.plugin.spring") version "2.3.20"
+  id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
 }
 
 group = "com.rogervinas"
@@ -35,7 +35,7 @@ subprojects {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.cloud:spring-cloud-starter-stream-kafka")
 
-    implementation("io.confluent:kafka-avro-serializer:8.1.1")
+    implementation("io.confluent:kafka-avro-serializer:8.2.0")
     implementation("org.apache.avro:avro:1.12.1")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
