@@ -7,8 +7,8 @@ plugins {
   id("org.springframework.boot") version "4.0.6" apply false
   id("io.spring.dependency-management") version "1.1.7"
   id("io.github.androa.gradle.plugin.avro") version "0.0.12"
-  id("org.jetbrains.kotlin.jvm") version "2.3.21"
-  id("org.jetbrains.kotlin.plugin.spring") version "2.3.21"
+  id("org.jetbrains.kotlin.jvm") version "2.4.0"
+  id("org.jetbrains.kotlin.plugin.spring") version "2.4.0"
   id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
 }
 
